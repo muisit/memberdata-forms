@@ -13,7 +13,6 @@ export const useDataStore = defineStore('data', () => {
     const pages:Ref<Array<WPPost>> = ref([]);
     const forms:Ref<Array<Form>> = ref([]);
     const currentForm:Ref<Form>  =ref({id:0, name: '', sheet: 0, settings: {}});
-    const currentValues:Ref<Array<string>> = ref([]);
     const attributes:Ref<Array<string>> = ref([]);
 
     function getConfiguration()

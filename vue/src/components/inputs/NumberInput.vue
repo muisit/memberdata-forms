@@ -1,12 +1,10 @@
 <script lang="ts" setup>
-import { ref } from 'vue';
 import type { Field } from '@/lib/types';
-import lang from '@/lib/lang';
 const props = defineProps<{
     field: Field;
     value: string;
 }>();
-const emits = defineEmits(['update']);
+defineEmits(['update']);
 
 function getNumberPrecision()
 {
@@ -58,7 +56,7 @@ import { ElInputNumber } from 'element-plus';
 </script>
 <template>
     <ElInputNumber
-        :model-value="props.value"
+        :model-value="parseInt(props.value)"
         @update:model-value="(e) => $emit('update',e)"
         :precision="getNumberPrecision()"
         :max="getMaximum()"

@@ -5,7 +5,7 @@ import lang from '@/lib/lang';
 const props = defineProps<{
     field: Field
 }>();
-const emits = defineEmits(['onUpdate']);
+defineEmits(['onUpdate']);
 
 const showDialog = ref(false);
 
@@ -41,7 +41,7 @@ function showMultiRadioInput()
 
 import FieldDialog from './FieldDialog.vue';
 import { Setting, Rank } from '@element-plus/icons-vue';
-import { ElIcon, ElInput, ElSelect, ElOption, ElCheckbox, ElRadio, ElRadioButton } from 'element-plus'
+import { ElIcon, ElInput, ElSelect, ElOption, ElCheckbox, ElRadio, ElRadioGroup } from 'element-plus'
 </script>
 <template>
     <div class="field-settings label-on-top">
@@ -62,11 +62,11 @@ import { ElIcon, ElInput, ElSelect, ElOption, ElCheckbox, ElRadio, ElRadioButton
                 <div><ElCheckbox>{{  lang.OPTION2 }}</ElCheckbox></div>
                 <div><ElCheckbox>{{  lang.OPTION3 }}</ElCheckbox></div>
             </span>
-            <ElRadio v-if="showMultiRadioInput()">
+            <ElRadioGroup v-if="showMultiRadioInput()">
                 <ElRadio>{{ lang.OPTION1 }}</ElRadio>
                 <ElRadio>{{ lang.OPTION2 }}</ElRadio>
                 <ElRadio>{{ lang.OPTION3 }}</ElRadio>
-            </ElRadio>
+            </ElRadioGroup>
         </div>
         <div class="fieldvalue-handle">
             <ElIcon size="large">

@@ -35,20 +35,16 @@ class FormSubmissionService
 {
     public static function submit(Form $form, array $dataFields)
     {
-        error_log("form submit");
         $settings = $form->getSettings();
         $fields = (array) $settings->fields;
 
-        error_log("validating fields");
         list($messages, $dataFields) = self::validateFields($fields, $dataFields);
 
         $cnt = 0;
         array_walk($messages, fn($lst) => $cnt += count($lst));
         if ($cnt == 0) {
-            error_log("no errors, saving form");
             return self::saveForm($form, $dataFields);
         }
-        error_log("validation errors found");
         return ['success' => false, 'messages' => $messages];
     }
 
@@ -60,17 +56,13 @@ class FormSubmissionService
         $redirectPage = $settings->redirectPage ?? null;
 
         if (strlen($emailAfter)) {
-            error_log("sending email");
             self::sendEmail($emailAfter, $emailSubject, $settings->fields, $dataFields);
         }
-        error_log("storing data in sheet");
         self::storeDataInSheet($form->sheet_id, $settings->fields, $dataFields);
 
         if (!empty($redirectPage)) {
-            error_log("redirecting");
             return ['success' => true, 'url' => home_url($redirectPage)];
         }
-        error_log("no redirection found");
         return ['success' => true];
     }
 
@@ -79,17 +71,14 @@ class FormSubmissionService
         $sheet = new Sheet($sheetId);
         $sheet->load();
         if (!empty($sheet) && !$sheet->isNew()) {
-            error_log("sheet exists");
             $configuration = \apply_filters('memberdata_configuration', ['sheet' => $sheet->getKey(), 'configuration' => []]);
             $attributes = $configuration['configuration'];
             $validNames = array_column($attributes, 'name');
 
-            error_log("creating member row");
             $member = new Member();
             $member->sheet_id = $sheet->getKey();
             $member = \apply_filters('memberdata_save_member', $member);
 
-            error_log("collecting attributes");
             $attrValues = [];
             for ($i = 0; $i < count($fields); $i++) {
                 $val = count($dataFields) > $i ? $dataFields[$i] : '';
@@ -100,7 +89,6 @@ class FormSubmissionService
                 }
             }
 
-            error_log("storing row data");
             $settings = \apply_filters(
                 'memberdata_save_attributes',
                 [
@@ -137,14 +125,13 @@ class FormSubmissionService
         The website
         HEREDOC;
         $headers = array('Content-Type: text/html; charset=UTF-8');
-        error_log("sending mail to $emailAddresses, $subject");
+
         wp_mail($emailAddresses, $subject, $template, $headers);
     }
 
 
     private static function validateFields(array $fields, array $data)
     {
-        error_log("validating fields " . count($fields) . '/' . count($data));
         $returnData = [];
         $messages = [];
         for ($i = 0; $i < count($fields); $i++) {
@@ -163,7 +150,6 @@ class FormSubmissionService
         $type = $field->type ?? 'text-line';
         $rulesSet = array_keys($rules);
         $messages = [];
-        error_log("validating field $name, $type");
         $hasWidget = in_array('widget', $rulesSet);
 
         switch ($type) {
@@ -210,7 +196,6 @@ class FormSubmissionService
 
     private static function validateRule($rule, $parameter, $value, $name, $type, $options)
     {
-        error_log("validating rule $rule, $parameter, $type, $options, " . (is_string($value) ? $value : '<no string>'));
         if (strpos($parameter, ":now:") !== false) {
             $parameter = new DateTimeImmutable();
         }
@@ -218,6 +203,7 @@ class FormSubmissionService
         $msg = '';
         if (empty($value) && ($value !== 0 && $type == 'number') && ($value !== '0')) {
             if ($rule == 'required') {
+                /* translators: %s is replaced with the field label */
                 $msg = sprintf(__('%s is a required field', 'memberdata-forms'), $name);
             }
         }
@@ -226,6 +212,7 @@ class FormSubmissionService
                 case 'email':
                     $retval = filter_var($value, FILTER_VALIDATE_EMAIL);
                     if ($retval === false) {
+                        /* translators: %s is replaced with the field label */
                         $msg = sprintf(__('%s must be a valid e-mail address', 'memberdata-forms'), $name);
                     }
                     break;
@@ -246,10 +233,12 @@ class FormSubmissionService
                     // when we reformat
                     if ($output != $value) {
                         if ($type == 'date') {
-                            $msg = sprintf(__('%s must be a valid date in the format %s', 'memberdata-forms'), $name, $parameter);
+                            /* translators: %1$s is replaced with the field label, %2$s is the target value */
+                            $msg = sprintf(__('%1$s must be a valid date in the format %2$s', 'memberdata-forms'), $name, $parameter);
                         }
                         else {
-                            $msg = sprintf(__('%s must be a valid time in the format %s', 'memberdata-forms'), $name, $parameter);
+                            /* translators: %1$s is replaced with the field label, %2$s is the target value */
+                            $msg = sprintf(__('%1$s must be a valid time in the format %2$s', 'memberdata-forms'), $name, $parameter);
                         }
                     }
                     break;
@@ -270,12 +259,10 @@ class FormSubmissionService
                         case 'date':
                             $val = DateTimeImmutable::createFromFormat('Y-m-d', $value);
                             $wrt = is_string($parameter) ? DateTimeImmutable::createFromFormat('Y-m-d', $parameter) : $parameter;
-                            error_log("wrt is " . json_encode($wrt));
                             break;
                         case 'time':
                             $val = DateTimeImmutable::createFromFormat('H:i:s', $value);
                             $wrt = is_string($parameter) ? DateTimeImmutable::createFromFormat('Y-m-d', $parameter) : $parameter;
-                            error_log("wrt is " . json_encode($wrt));
                             break;
                         default:
                             $val = strlen($value);
@@ -286,6 +273,7 @@ class FormSubmissionService
                     break;
                 case 'int':
                     if (!is_numeric($value) || strpos($value, '.') !== false) {
+                        /* translators: %s is replaced with the field label */
                         $msg = sprintf(__('%s must be an integral numeric value', 'memberdata-forms'), $rule);
                     }
                     $value = intval($value);
@@ -293,14 +281,16 @@ class FormSubmissionService
                 case 'number':
                     $value = floatval($value);
                     if (is_nan($value) || is_infinite($value)) {
-                        $msg = sprintf(__('%s must be an numeric value', 'memberdata-forms'), $rule);
+                        /* translators: %s is replaced with the field label */
+                        $msg = sprintf(__('%s must be a numeric value', 'memberdata-forms'), $rule);
                     }
                     break;
                 case 'trim':
                     $value = trim($value);
                     break;
                 default:
-                    $msg = sprintf(__('Rule %s not implemented', 'memberdata-forms'), $rule);
+                        /* translators: %s is replaced with the rule name */
+                        $msg = sprintf(__('Rule %s not implemented', 'memberdata-forms'), $rule);
                     break;
             }
         }
@@ -314,27 +304,39 @@ class FormSubmissionService
         switch ($rule) {
             case 'lt':
                 $result = $compareresult == -1;
-                $msgnum = sprintf(__('%s must be smaller than %f', 'memberdata-forms'), $name, $type == 'number' ? $val : 0);
-                $msgdate = sprintf(__('%s must be before %s', 'memberdata-forms'), $name, ($type == 'date' || $type == 'time') ? $val->format($options) : '');
-                $msglength = sprintf(__('%s must be smaller than %d characters', 'memberdata-forms'), $name, !($type == 'date' || $type == 'time') ? $val : 0);
+                /* translators: %1$s is replaced with the field label, %2$f with the target value */
+                $msgnum = sprintf(__('%1$s must be smaller than %2$f', 'memberdata-forms'), $name, $type == 'number' ? $val : 0);
+                /* translators: %1$s is replaced with the field label, %2$s with the target value */
+                $msgdate = sprintf(__('%1$s must be before %2$s', 'memberdata-forms'), $name, ($type == 'date' || $type == 'time') ? $val->format($options) : '');
+                /* translators: %1$s is replaced with the field label, %2$d with the target value */
+                $msglength = sprintf(__('%1$s must be smaller than %2$d characters', 'memberdata-forms'), $name, !($type == 'date' || $type == 'time') ? $val : 0);
                 break;
             case 'lte':
                 $result = $compareresult != 1;
-                $msgnum = sprintf(__('%s must be smaller or equal to %f', 'memberdata-forms'), $name, $type == 'number' ? $val : 0);
-                $msgdate = sprintf(__('%s must be before or at %s', 'memberdata-forms'), $name, ($type == 'date' || $type == 'time') ? $val->format($options) : '');
-                $msglength = sprintf(__('%s must be smaller than or equal to %d characters', 'memberdata-forms'), $name, !($type == 'date' || $type == 'time') ? $val : 0);
+                /* translators: %1$s is replaced with the field label, %2$f with the target value */
+                $msgnum = sprintf(__('%1$s must be smaller than or equal to %2$f', 'memberdata-forms'), $name, $type == 'number' ? $val : 0);
+                /* translators: %1$s is replaced with the field label, %2$s with the target value */
+                $msgdate = sprintf(__('%1$s must be before or at %2$s', 'memberdata-forms'), $name, ($type == 'date' || $type == 'time') ? $val->format($options) : '');
+                /* translators: %1$s is replaced with the field label, %2$d with the target value */
+                $msglength = sprintf(__('%1$s must be smaller than or equal to %2$d characters', 'memberdata-forms'), $name, !($type == 'date' || $type == 'time') ? $val : 0);
                 break;
             case 'gte':
                 $result = $compareresult != -1;
-                $msgnum = sprintf(__('%s must be greater than or equal to %f', 'memberdata-forms'), $name, $type == 'number' ? $val : 0);
-                $msgdate = sprintf(__('%s must be after or at %s', 'memberdata-forms'), $name, ($type == 'date' || $type == 'time') ? $val->format($options) : '');
-                $msglength = sprintf(__('%s must have at least %d characters', 'memberdata-forms'), $name, !($type == 'date' || $type == 'time') ? $val : 0);
+                /* translators: %1$s is replaced with the field label, %2$f with the target value */
+                $msgnum = sprintf(__('%1$s must be greater than or equal to %2$f', 'memberdata-forms'), $name, $type == 'number' ? $val : 0);
+                /* translators: %1$s is replaced with the field label, %2$s with the target value */
+                $msgdate = sprintf(__('%1$s must be at or after %2$s', 'memberdata-forms'), $name, ($type == 'date' || $type == 'time') ? $val->format($options) : '');
+                /* translators: %1$s is replaced with the field label, %2$d with the target value */
+                $msglength = sprintf(__('%1$s must have at least %2$d characters', 'memberdata-forms'), $name, !($type == 'date' || $type == 'time') ? $val : 0);
                 break;
             case 'gt':
                 $result = $compareresult == 1;
-                $msgnum = sprintf(__('%s must be greater than %f', 'memberdata-forms'), $name, $type == 'number' ? $val : 0);
-                $msgdate = sprintf(__('%s must be after %s', 'memberdata-forms'), $name, ($type == 'date' || $type == 'time') ? $val->format($options) : '');
-                $msglength = sprintf(__('%s must have more than %d characters', 'memberdata-forms'), $name, !($type == 'date' || $type == 'time') ? $val : 0);
+                /* translators: %1$s is replaced with the field label, %2$f with the target value */
+                $msgnum = sprintf(__('%1$s must be greater than %2$f', 'memberdata-forms'), $name, $type == 'number' ? $val : 0);
+                /* translators: %1$s is replaced with the field label, %2$s with the target value */
+                $msgdate = sprintf(__('%1$s must be after %2$s', 'memberdata-forms'), $name, ($type == 'date' || $type == 'time') ? $val->format($options) : '');
+                /* translators: %1$s is replaced with the field label, %2$d with the target value */
+                $msglength = sprintf(__('%1$s must have more than %2$d characters', 'memberdata-forms'), $name, !($type == 'date' || $type == 'time') ? $val : 0);
                 break;
         }
 
@@ -369,4 +371,3 @@ class FormSubmissionService
         return 0;
     }
 }
-

@@ -5,7 +5,7 @@ import { replaceNowValue } from './functions';
 
 export function validate_all_fields(fields:Field[], values:string[]): Array<ValidationResult>
 {
-    let retval:Array<ValidationResult> = [];
+    const retval:Array<ValidationResult> = [];
     fields.forEach((v:Field, index:number) => {
         let val = values.length > index ? values[index] : '';
 

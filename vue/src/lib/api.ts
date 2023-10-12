@@ -154,7 +154,7 @@ export function saveForm(data:Form|null): Promise<APIResult>
 {
     if (data) {
         // convert a null to a 0 to avoid typing issues
-        let newData:any = Object.assign({}, data);
+        const newData:any = Object.assign({}, data);
         if (newData.sheet == 0) {
             newData.sheet = null;
         }

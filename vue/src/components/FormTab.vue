@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { ref, watch } from 'vue';
-import type { Ref } from 'vue';
 import type { Form, Field, APIResult } from '@/lib/types';
 import { random_token } from '@/lib/functions';
 import lang from '@/lib/lang';
@@ -85,12 +84,22 @@ function onUpdate(settings:any)
             if (field.token == settings.field.token) {
                 switch(settings.fieldName) {
                     case 'label':
+                        field.label = settings.value;
+                        break;
                     case 'attribute':
+                        field.attribute = settings.value;
+                        break;
                     case 'rules':
+                        field.rules = settings.value;
+                        break;
                     case 'defaultValue':
+                        field.defaultValue = settings.value;
+                        break;
                     case 'options':
+                        field.options = settings.value;
+                        break;
                     case 'type':
-                        field[settings.fieldName] = settings.value as string;
+                        field.type = settings.value;
                         break;
                 }
             }

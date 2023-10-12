@@ -1,7 +1,5 @@
 <script lang="ts" setup>
-import { ref } from 'vue';
 import type { Field } from '@/lib/types';
-import lang from '@/lib/lang';
 const props = defineProps<{
     field: Field;
     value: string;
@@ -43,15 +41,14 @@ function getOptions()
     return opts;
 }
 
-function isSet(opt)
+function isSet(opt:string)
 {
-    
-    return vals.includes(opt);
+    return getOptions().includes(opt);
 }
 
-function toggleOpt(opt, isset)
+function toggleOpt(opt:string, isset:any)
 {
-    let vals = props.value.split('|');
+    let vals = getOptions();
     if (isset && vals.includes(opt)) {
         vals = vals.filter((v) => v != opt);
     }

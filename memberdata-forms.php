@@ -11,7 +11,7 @@
  * @wordpress-plugin
  * Plugin Name:         memberdata-forms
  * Plugin URI:          https://github.com/muisit/memberdata-forms
- * Description:         Simple ranking of players in a configurable elo calculation
+ * Description:         Creating forms attached to sheets and validate data entry
  * Version:             1.0.1
  * Requires at least:   6.1
  * Requires PHP:        7.2

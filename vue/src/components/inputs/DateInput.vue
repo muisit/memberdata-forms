@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { ref } from 'vue';
 import type { Field } from '@/lib/types';
 import lang from '@/lib/lang';
 import { convertDateToDayJSDateFormat } from '@/lib/functions';
@@ -7,7 +6,7 @@ const props = defineProps<{
     field: Field;
     value: string;
 }>();
-const emits = defineEmits(['update']);
+defineEmits(['update']);
 
 function getDateFormat()
 {

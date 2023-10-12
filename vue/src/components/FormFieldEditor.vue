@@ -4,7 +4,7 @@ import lang from '@/lib/lang';
 const props = defineProps<{
     fieldlist: Array<Field>
 }>();
-const emits = defineEmits(['addField', 'onUpdate', 'onSort']);
+defineEmits(['addField', 'onUpdate', 'onSort']);
 
 function dragStart()
 {

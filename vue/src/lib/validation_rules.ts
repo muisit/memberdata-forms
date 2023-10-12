@@ -26,8 +26,8 @@ export interface ValidationResult {
 export function validateField(rules:RuleSet, name: string, value:string, type:string, options:string): ValidationResult
 {
     const messages:Array<string|null> = Object.keys(rules).map((rule:string) => {
-        let ruleparameter = rules[rule];
-        let fValue:FieldValues = {
+        const ruleparameter = rules[rule];
+        const fValue:FieldValues = {
             name: name,
             rule: rule,
             parameter: replaceNowValue(ruleparameter),
@@ -220,12 +220,12 @@ const ruleImplementations:RuleImplementationObject = {
         });
     },
     'int': function (fieldValues:FieldValues, value:string): RuleValidationResult {
-        let val = parseInt(value);
+        const val = parseInt(value);
         if (isNaN(val)) {
             return {value: value, message: lang.replace(lang.MSGRULEINT, fieldValues.name)};
         }
         if (fieldValues.parameter.length) {
-            let padSize = parseInt(fieldValues.parameter);
+            const padSize = parseInt(fieldValues.parameter);
             if (!isNaN(padSize) && padSize > 1) {
                 value = pad(val, padSize);
             }
@@ -236,15 +236,15 @@ const ruleImplementations:RuleImplementationObject = {
         return {value: value};
     },
     'number': function (fieldValues:FieldValues, value:string): RuleValidationResult {
-        let val = parseFloat(value);
+        const val = parseFloat(value);
         if (isNaN(val)) {
             return {value: value, message: lang.replace(lang.MSGRULENUMBER, fieldValues.name)};
         }
         if (fieldValues.parameter.length) {
             // the parameter uses a mask-type, like '0.00' to indicate two decimals
-            let padSizes = fieldValues.parameter.split('.');
-            let padSizePre = padSizes.length > 0 ? padSizes[0].length : 0;
-            let padSizePost = padSizes.length > 1 ? padSizes[1].length : 0;
+            const padSizes = fieldValues.parameter.split('.');
+            const padSizePre = padSizes.length > 0 ? padSizes[0].length : 0;
+            const padSizePost = padSizes.length > 1 ? padSizes[1].length : 0;
             value = padFloat(val, padSizePre, padSizePost);
         }
         else {

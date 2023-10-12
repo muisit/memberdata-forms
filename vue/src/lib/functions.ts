@@ -9,7 +9,7 @@ export function pad(nm:number, numdigits:number = 2):string {
 }
 
 export function padFloat(nm:number, numdigits:number = 1, numdecimals:number = 0):string {
-    let values = ('' + nm).split('.');
+    const values = ('' + nm).split('.');
 
     if (!isNaN(numdigits) && numdigits > 1 && values.length > 0) {
         values[0] = pad(parseInt(values[0]), numdigits);

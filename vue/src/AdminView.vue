@@ -16,14 +16,13 @@ data.getConfiguration();
 data.getForms().then(() => tabindex.value = '' + data.forms[0].id);
 data.getBasicSettings();
 
-const formDialog = ref(false);
 const tabindex = ref('settings');
 const tabskey = ref(random_token());
 
 import { saveForm  } from '@/lib/api';
 function addForm()
 {
-    saveForm({name: lang.NEWFORM, sheet_id: null, settings: null})
+    saveForm({id: 0, name: lang.NEWFORM, sheet: 0, settings: null})
         .then((retval:APIResult) => {
             if (retval && retval.data && retval.data.errors && retval.data.errors.length) {
                 alert(lang.ERROR_SAVE_FORM + retval.data.errors.join('\r\n'));
