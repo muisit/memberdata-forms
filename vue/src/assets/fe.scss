@@ -1,0 +1,43 @@
+#memberdata_forms-fe {
+    input, input:focus { 
+        border-width: 0px;
+        outline-width: 0px;
+        box-shadow: none;
+        background-color: var(--el-input-bg-color);
+    }
+
+    button {
+        background-image: none;
+    }
+
+    .el-form {
+        .field-settings {
+            .required-indicator {
+                color: red;
+            }
+
+            label {
+                margin-bottom: 0px;
+                font-weight: bold;
+            }
+
+            .el-form-item {
+                margin-bottom: 5px;
+            }
+    
+            .errors {
+                color: red;
+                margin-top: -5px;
+                margin-bottom: 5px;
+                font-style: italic;
+                font-size: smaller;
+            }
+        }
+    }
+}
+
+.el-popper {
+    button {
+        padding: 0px;
+    }
+}

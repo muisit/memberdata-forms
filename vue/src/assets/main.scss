@@ -1,0 +1,87 @@
+#memberdata_forms-admin {
+    input, input:focus { 
+        border-width: 0px;
+        outline-width: 0px;
+        box-shadow: none;
+        background-color: var(--el-input-bg-color);
+    }
+
+    position: relative;
+
+    .action-buttons {
+        position: absolute;
+        top: 0px;
+        right: 10px;
+    }
+
+    .form-pane {
+        form {
+            .el-form-item {
+                margin-bottom: 5px;
+
+                label {
+                    width: 125px;
+                }
+
+                .descr {
+                    font-size: small;
+                    font-style: italic;
+                }
+
+                .el-form-item__content {
+                    align-items: flex-start;
+                }
+
+                label.el-checkbox {
+                    width: auto;
+                }
+            }
+        }
+
+        .form-field-editor {
+            position: relative;
+
+            hr {
+                padding-bottom: 30px;
+            }
+            .action-buttons {
+                position: absolute;
+                right: 10px;
+                top: 10px;
+            }
+
+            .form-fields {
+                .label-on-top {
+                    max-width: 45vw;
+                    position: relative;
+                    border: 1px solid #aaa;
+                    border-radius: 5px;
+                    background-color: white;
+                    margin: 10px 0px;
+                    padding: 5px;
+
+                    label { 
+                        font-size: smaller;
+                        font-weight: bold;
+                    }
+
+                    .input {
+                        width: 80%;
+                    }
+
+                    .fieldvalue-handle {
+                        position: absolute;
+                        right: 30px;
+                        top: 5px;
+                    }
+
+                    .settings {
+                        position: absolute;
+                        right: 5px;
+                        top: 5px;
+                    }
+                }
+            }
+        }
+    }
+}
