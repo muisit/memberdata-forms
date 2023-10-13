@@ -115,7 +115,7 @@ function onSort(newlist:any)
     }
 }
 
-function getSetting(field:string)
+function getSetting(field:string, defaultValue:string = '')
 {
     if (data.currentForm && data.currentForm.settings) {
         if (data.currentForm.settings[field]) {
@@ -125,22 +125,31 @@ function getSetting(field:string)
     if (field == 'submitButton') {
         return lang.SUBMITBUTTONSUBMIT;
     }
-    return '';
+    return defaultValue;
 }
 
-function setSetting(field:string, val:string)
+function setSetting(field:string, val:string|null)
 {
     if (data.currentForm) {
         if (!data.currentForm.settings) {
             data.currentForm.settings = {};
         }
-        data.currentForm.settings[field] = val;
+        data.currentForm.settings[field] = val || '';
     }
 }
+const predefineColors = ref([
+  '#ffffff',
+  '#000000',
+  '#ff0000',
+  '#00ff00',
+  '#0000ff',
+  '#aaaaaa',
+  '#409eff'
+]);
 
 const datalistId = ref(random_token());
 
-import { ElForm, ElFormItem, ElSelect, ElOption, ElInput, ElButton } from 'element-plus';
+import { ElForm, ElFormItem, ElSelect, ElOption, ElInput, ElButton, ElColorPicker } from 'element-plus';
 import FormFieldEditor from './FormFieldEditor.vue';
 </script>
 <template>
@@ -181,6 +190,24 @@ import FormFieldEditor from './FormFieldEditor.vue';
             </ElFormItem>
             <ElFormItem :label="lang.REDIRECTPAGE">
                 <ElInput :model-value="getSetting('redirectPage')" @update:model-value="(e) => setSetting('redirectPage', e)" :list="datalistId"/>
+            </ElFormItem>
+            <ElFormItem :label="lang.BUTTONCOLOUR">
+                <ElColorPicker :model-value="getSetting('buttonColour', '#409eff')" @update:model-value="(e) => setSetting('buttonColour', e)" :predefine="predefineColors"/>
+            </ElFormItem>
+            <ElFormItem :label="lang.BORDERCOLOUR">
+                <ElColorPicker :model-value="getSetting('borderColour', '#aaaaaa')" @update:model-value="(e) => setSetting('borderColour', e)" :predefine="predefineColors"/>
+            </ElFormItem>
+            <ElFormItem :label="lang.TEXTCOLOUR">
+                <ElColorPicker :model-value="getSetting('textColour', '#000000')" @update:model-value="(e) => setSetting('textColour', e)" :predefine="predefineColors"/>
+            </ElFormItem>
+            <ElFormItem :label="lang.LABELCOLOUR">
+                <ElColorPicker :model-value="getSetting('labelColour', '#000000')" @update:model-value="(e) => setSetting('labelColour', e)" :predefine="predefineColors"/>
+            </ElFormItem>
+            <ElFormItem :label="lang.ERRORCOLOUR">
+                <ElColorPicker :model-value="getSetting('errorColour', '#ff0000')" @update:model-value="(e) => setSetting('errorColour', e)" :predefine="predefineColors"/>
+            </ElFormItem>
+            <ElFormItem :label="lang.REQUIREDCOLOUR">
+                <ElColorPicker :model-value="getSetting('requiredColour', '#ff0000')" @update:model-value="(e) => setSetting('requiredColour', e)" :predefine="predefineColors"/>
             </ElFormItem>
             <div class="buttons">
                 <ElButton @click="saveForm" type="primary">{{  lang.SAVE }}</ElButton>

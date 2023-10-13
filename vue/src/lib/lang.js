@@ -48,6 +48,7 @@ export default {
     OPTIONUSELECT: __('Limited single selection', 'memberdata-forms'),
     OPTIONCHECKBOX: __('Checkbox', 'memberdata-forms'),
     OPTIONHIDDEN: __('Hidden', 'memberdata-forms'),
+    OPTIONTEXTCONTENT: __('Text content', 'memberdata-forms'),
     RULEWIDGET: __('Widget', 'memberdata-forms'),
     RULEUSEWIDGET: __('use javascript widget for entry', 'memberdata-forms'),
     RULEREQUIRED: __('is required', 'memberdata-forms'),
@@ -90,6 +91,12 @@ export default {
     MSGRULETIME: __('%1$s must be a valid time in the format %2$s', 'memberdata-forms'),
     MSGRULEEMAIL: __('%s must be a valid e-mail address', 'memberdata-forms'),
     RESULTS_SAVED: __('The form was saved successfully. You can now close this page', 'memberdata-forms'),
+    BUTTONCOLOUR: __('Button colour', 'memberdata-forms'),
+    BORDERCOLOUR: __('Border colour', 'memberdata-forms'),
+    TEXTCOLOUR: __('Text colour', 'memberdata-forms'),
+    LABELCOLOUR: __('Label colour', 'memberdata-forms'),
+    ERRORCOLOUR: __('Error colour', 'memberdata-forms'),
+    REQUIREDCOLOUR: __('Indicator colour', 'memberdata-forms'),
 
     replace: function (txt) {
         var args = Array.prototype.slice.call(arguments);

@@ -31,37 +31,37 @@ msgstr ""
 
 #. translators: %s is replaced with the field label
 #: lib/services/FormSubmissionService.php:207
-#: dist/assets/functions-21ad24e9.js:9358
+#: dist/assets/functions-4010f1a0.js:9359
 msgid "%s is a required field"
 msgstr "%s is een verplicht veld"
 
 #. translators: %s is replaced with the field label
 #: lib/services/FormSubmissionService.php:216
-#: dist/assets/functions-21ad24e9.js:9375
+#: dist/assets/functions-4010f1a0.js:9376
 msgid "%s must be a valid e-mail address"
 msgstr "%s moet een geldig e-mail adres zijn"
 
 #. translators: %1$s is replaced with the field label, %2$s is the target value
 #: lib/services/FormSubmissionService.php:237
-#: dist/assets/functions-21ad24e9.js:9373
+#: dist/assets/functions-4010f1a0.js:9374
 msgid "%1$s must be a valid date in the format %2$s"
 msgstr "%1$s moet een geldige datum in het format %2$s zijn"
 
 #. translators: %1$s is replaced with the field label, %2$s is the target value
 #: lib/services/FormSubmissionService.php:241
-#: dist/assets/functions-21ad24e9.js:9374
+#: dist/assets/functions-4010f1a0.js:9375
 msgid "%1$s must be a valid time in the format %2$s"
 msgstr "%1$s moet een geldig tijdstip in het format %2$s zijn"
 
 #. translators: %s is replaced with the field label
 #: lib/services/FormSubmissionService.php:277
-#: dist/assets/functions-21ad24e9.js:9371
+#: dist/assets/functions-4010f1a0.js:9372
 msgid "%s must be an integral numeric value"
 msgstr "%s moet een geheel getal zijn"
 
 #. translators: %s is replaced with the field label
 #: lib/services/FormSubmissionService.php:285
-#: dist/assets/functions-21ad24e9.js:9372
+#: dist/assets/functions-4010f1a0.js:9373
 msgid "%s must be a numeric value"
 msgstr "%s moet een getal zijn"
 
@@ -72,353 +72,381 @@ msgstr "Validatieregel %s is niet geimplementeerd"
 
 #. translators: %1$s is replaced with the field label, %2$f with the target value
 #: lib/services/FormSubmissionService.php:308
-#: dist/assets/functions-21ad24e9.js:9359
+#: dist/assets/functions-4010f1a0.js:9360
 msgid "%1$s must be smaller than %2$f"
 msgstr "%1$s moet kleiner zijn dan %2$f"
 
 #. translators: %1$s is replaced with the field label, %2$s with the target value
 #: lib/services/FormSubmissionService.php:310
-#: dist/assets/functions-21ad24e9.js:9363
+#: dist/assets/functions-4010f1a0.js:9364
 msgid "%1$s must be before %2$s"
 msgstr "%1$s moet voor %2$s zijn"
 
 #. translators: %1$s is replaced with the field label, %2$d with the target value
 #: lib/services/FormSubmissionService.php:312
-#: dist/assets/functions-21ad24e9.js:9367
+#: dist/assets/functions-4010f1a0.js:9368
 msgid "%1$s must be smaller than %2$d characters"
 msgstr "%1$s moet korter zijn dan %2$d tekens"
 
 #. translators: %1$s is replaced with the field label, %2$f with the target value
 #: lib/services/FormSubmissionService.php:317
-#: dist/assets/functions-21ad24e9.js:9360
+#: dist/assets/functions-4010f1a0.js:9361
 msgid "%1$s must be smaller than or equal to %2$f"
 msgstr "%1$s moet kleiner of gelijk aan %2$f zijn"
 
 #. translators: %1$s is replaced with the field label, %2$s with the target value
 #: lib/services/FormSubmissionService.php:319
-#: dist/assets/functions-21ad24e9.js:9364
+#: dist/assets/functions-4010f1a0.js:9365
 msgid "%1$s must be before or at %2$s"
 msgstr "%1$s mag niet na %2$s vallen"
 
 #. translators: %1$s is replaced with the field label, %2$d with the target value
 #: lib/services/FormSubmissionService.php:321
-#: dist/assets/functions-21ad24e9.js:9368
+#: dist/assets/functions-4010f1a0.js:9369
 msgid "%1$s must be smaller than or equal to %2$d characters"
 msgstr "%1$s mag niet meer dan %2$d tekens bevatten"
 
 #. translators: %1$s is replaced with the field label, %2$f with the target value
 #: lib/services/FormSubmissionService.php:326
-#: dist/assets/functions-21ad24e9.js:9361
+#: dist/assets/functions-4010f1a0.js:9362
 msgid "%1$s must be greater than or equal to %2$f"
 msgstr "%1$s moet gelijk of groter zijn dan %2$f"
 
 #. translators: %1$s is replaced with the field label, %2$s with the target value
 #: lib/services/FormSubmissionService.php:328
-#: dist/assets/functions-21ad24e9.js:9365
+#: dist/assets/functions-4010f1a0.js:9366
 msgid "%1$s must be at or after %2$s"
 msgstr "%1$s moet niet voor %2$s vallen"
 
 #. translators: %1$s is replaced with the field label, %2$d with the target value
 #: lib/services/FormSubmissionService.php:330
-#: dist/assets/functions-21ad24e9.js:9369
+#: dist/assets/functions-4010f1a0.js:9370
 msgid "%1$s must have at least %2$d characters"
 msgstr "%1$s moet minstens %2$d tekens hebben"
 
 #. translators: %1$s is replaced with the field label, %2$f with the target value
 #: lib/services/FormSubmissionService.php:335
-#: dist/assets/functions-21ad24e9.js:9362
+#: dist/assets/functions-4010f1a0.js:9363
 msgid "%1$s must be greater than %2$f"
 msgstr "%1$s moet groter zijn dan %2$f"
 
 #. translators: %1$s is replaced with the field label, %2$s with the target value
 #: lib/services/FormSubmissionService.php:337
-#: dist/assets/functions-21ad24e9.js:9366
+#: dist/assets/functions-4010f1a0.js:9367
 msgid "%1$s must be after %2$s"
 msgstr "%1$s moet na %2$s vallen"
 
 #. translators: %1$s is replaced with the field label, %2$d with the target value
 #: lib/services/FormSubmissionService.php:339
-#: dist/assets/functions-21ad24e9.js:9370
+#: dist/assets/functions-4010f1a0.js:9371
 msgid "%1$s must have more than %2$d characters"
 msgstr "%1$s moet meer dan %2$d tekens hebben"
 
-#: dist/assets/functions-21ad24e9.js:9289
+#: dist/assets/functions-4010f1a0.js:9289
 msgid "MemberData Forms Manager"
 msgstr "MemberData Formulier Manager"
 
-#: dist/assets/functions-21ad24e9.js:9290
+#: dist/assets/functions-4010f1a0.js:9290
 msgid "Shortcode"
 msgstr "Shortcode"
 
-#: dist/assets/functions-21ad24e9.js:9291
+#: dist/assets/functions-4010f1a0.js:9291
 msgid "Settings"
 msgstr "Instellingen"
 
-#: dist/assets/functions-21ad24e9.js:9292
+#: dist/assets/functions-4010f1a0.js:9292
 msgid "Save"
 msgstr "Opslaan"
 
-#: dist/assets/functions-21ad24e9.js:9293
-#: dist/assets/functions-21ad24e9.js:9350
+#: dist/assets/functions-4010f1a0.js:9293
+#: dist/assets/functions-4010f1a0.js:9351
 msgid "Close"
 msgstr "Sluiten"
 
-#: dist/assets/functions-21ad24e9.js:9294
+#: dist/assets/functions-4010f1a0.js:9294
 msgid "Cancel"
 msgstr ""
 
-#: dist/assets/functions-21ad24e9.js:9295
+#: dist/assets/functions-4010f1a0.js:9295
 msgid "Remove"
 msgstr "Annuleren"
 
-#: dist/assets/functions-21ad24e9.js:9296
+#: dist/assets/functions-4010f1a0.js:9296
 msgid "Add Form"
 msgstr "Formulier Toevoegen"
 
-#: dist/assets/functions-21ad24e9.js:9297
+#: dist/assets/functions-4010f1a0.js:9297
 msgid "Add"
 msgstr "Toevoegen"
 
-#: dist/assets/functions-21ad24e9.js:9298
+#: dist/assets/functions-4010f1a0.js:9298
 msgid "There was a network problem saving the data. Please try again or reload the page"
 msgstr "Er was een netwerkprobleem tijdens het opslaan van de gegevens. Probeer het a.u.b. nog een keer of herlaad de pagina"
 
-#: dist/assets/functions-21ad24e9.js:9299
+#: dist/assets/functions-4010f1a0.js:9299
 msgid "Network error, please try again"
 msgstr "Netwerkfout, probeer het nog eens"
 
-#: dist/assets/functions-21ad24e9.js:9300
+#: dist/assets/functions-4010f1a0.js:9300
 msgid "Validation"
 msgstr "Validatie"
 
-#: dist/assets/functions-21ad24e9.js:9301
+#: dist/assets/functions-4010f1a0.js:9301
 msgid "Error saving form:"
 msgstr "Fout bij opslaan van formulier:"
 
-#: dist/assets/functions-21ad24e9.js:9302
+#: dist/assets/functions-4010f1a0.js:9302
 msgid "There was an error saving the form results. Please try again or reload the page. If the problem persists, please contact administration."
 msgstr "Er was een foutmelding tijdens het opslaan van de gegevens. Probeer het a.u.b. nog een keer of herlaad de pagina. Als het probleem blijft bestaan, neem dan contact op met de beheerders."
 
-#: dist/assets/functions-21ad24e9.js:9303
+#: dist/assets/functions-4010f1a0.js:9303
 msgid "YYYY-MM-DD HH:mm"
 msgstr "DD-MM-YYYY HH:mm"
 
-#: dist/assets/functions-21ad24e9.js:9304
+#: dist/assets/functions-4010f1a0.js:9304
 msgid "NewForm"
 msgstr "NieuwFormulier"
 
-#: dist/assets/functions-21ad24e9.js:9305
+#: dist/assets/functions-4010f1a0.js:9305
 msgid "Name"
 msgstr "Naam"
 
-#: dist/assets/functions-21ad24e9.js:9306
+#: dist/assets/functions-4010f1a0.js:9306
 msgid "Sheet"
 msgstr "Werkblad"
 
-#: dist/assets/functions-21ad24e9.js:9307
+#: dist/assets/functions-4010f1a0.js:9307
 msgid "Select a sheet"
 msgstr "Selecteer een werkblad"
 
-#: dist/assets/functions-21ad24e9.js:9308
+#: dist/assets/functions-4010f1a0.js:9308
 msgid "Option 1"
 msgstr "Optie 1"
 
-#: dist/assets/functions-21ad24e9.js:9309
+#: dist/assets/functions-4010f1a0.js:9309
 msgid "Option 2"
 msgstr "Optie 2"
 
-#: dist/assets/functions-21ad24e9.js:9310
+#: dist/assets/functions-4010f1a0.js:9310
 msgid "Option 3"
 msgstr "Optie 3"
 
-#: dist/assets/functions-21ad24e9.js:9311
+#: dist/assets/functions-4010f1a0.js:9311
 msgid "New Field"
 msgstr "Nieuw veld"
 
-#: dist/assets/functions-21ad24e9.js:9312
+#: dist/assets/functions-4010f1a0.js:9312
 msgid "Edit Field"
 msgstr "Bewerk Veld"
 
-#: dist/assets/functions-21ad24e9.js:9313
+#: dist/assets/functions-4010f1a0.js:9313
 msgid "Label"
 msgstr "Label"
 
-#: dist/assets/functions-21ad24e9.js:9314
+#: dist/assets/functions-4010f1a0.js:9314
 msgid "Attribute"
 msgstr "Attribuut"
 
-#: dist/assets/functions-21ad24e9.js:9315
+#: dist/assets/functions-4010f1a0.js:9315
 msgid "Select an attribute"
 msgstr "Selecteer een attribuut"
 
-#: dist/assets/functions-21ad24e9.js:9316
+#: dist/assets/functions-4010f1a0.js:9316
 msgid "Default value"
 msgstr "Standaardwaarde"
 
-#: dist/assets/functions-21ad24e9.js:9317
+#: dist/assets/functions-4010f1a0.js:9317
 msgid "Use ':now:' to get the current date-time"
 msgstr "Gebruik ':now:' om de huidige datum-tijd te krijgen"
 
-#: dist/assets/functions-21ad24e9.js:9318
+#: dist/assets/functions-4010f1a0.js:9318
 msgid "Type"
 msgstr "Type"
 
-#: dist/assets/functions-21ad24e9.js:9319
+#: dist/assets/functions-4010f1a0.js:9319
 msgid "Options"
 msgstr "Opties"
 
-#: dist/assets/functions-21ad24e9.js:9320
+#: dist/assets/functions-4010f1a0.js:9320
 msgid "Enter a list of values, separated with bars (|)"
 msgstr "Voer een lijst van waardes in, gescheiden met een balk (|)"
 
-#: dist/assets/functions-21ad24e9.js:9321
+#: dist/assets/functions-4010f1a0.js:9321
 msgid "Format"
 msgstr "Format"
 
-#: dist/assets/functions-21ad24e9.js:9322
+#: dist/assets/functions-4010f1a0.js:9322
 msgid "Examples: 'Y-m-d', 'H:i:s', '0.00'"
 msgstr "Bijvoorbeeld: 'Y-m-d', 'H:i:s', '0.00'"
 
-#: dist/assets/functions-21ad24e9.js:9323
+#: dist/assets/functions-4010f1a0.js:9323
 msgid "Rules"
 msgstr "Validatieregels"
 
-#: dist/assets/functions-21ad24e9.js:9324
+#: dist/assets/functions-4010f1a0.js:9324
 msgid "Text-line"
 msgstr "Tekst-regel"
 
-#: dist/assets/functions-21ad24e9.js:9325
+#: dist/assets/functions-4010f1a0.js:9325
 msgid "Text-area"
 msgstr "Tekst-gebied"
 
-#: dist/assets/functions-21ad24e9.js:9326
+#: dist/assets/functions-4010f1a0.js:9326
 msgid "Number"
 msgstr "Nummer"
 
-#: dist/assets/functions-21ad24e9.js:9327
+#: dist/assets/functions-4010f1a0.js:9327
 msgid "Date"
 msgstr "Datum"
 
-#: dist/assets/functions-21ad24e9.js:9328
+#: dist/assets/functions-4010f1a0.js:9328
 msgid "Time"
 msgstr "Tijd"
 
-#: dist/assets/functions-21ad24e9.js:9329
+#: dist/assets/functions-4010f1a0.js:9329
 msgid "E-mail"
 msgstr "E-mail"
 
-#: dist/assets/functions-21ad24e9.js:9330
+#: dist/assets/functions-4010f1a0.js:9330
 msgid "Single selection"
 msgstr "Enkelvoudige selectie"
 
-#: dist/assets/functions-21ad24e9.js:9331
+#: dist/assets/functions-4010f1a0.js:9331
 msgid "Limited multiple selection"
 msgstr "Beperkte multi-selectie"
 
-#: dist/assets/functions-21ad24e9.js:9332
+#: dist/assets/functions-4010f1a0.js:9332
 msgid "Limited single selection"
 msgstr "Beperkte enkelvoudige selectie"
 
-#: dist/assets/functions-21ad24e9.js:9333
+#: dist/assets/functions-4010f1a0.js:9333
 msgid "Checkbox"
 msgstr "Vinkbox"
 
-#: dist/assets/functions-21ad24e9.js:9334
+#: dist/assets/functions-4010f1a0.js:9334
 msgid "Hidden"
 msgstr "Verborgen"
 
-#: dist/assets/functions-21ad24e9.js:9335
+#: dist/assets/functions-4010f1a0.js:9336
 msgid "Widget"
 msgstr "Wediget"
 
-#: dist/assets/functions-21ad24e9.js:9336
+#: dist/assets/functions-4010f1a0.js:9337
 msgid "use javascript widget for entry"
 msgstr "gebruik javascript widget voor invoer"
 
-#: dist/assets/functions-21ad24e9.js:9337
+#: dist/assets/functions-4010f1a0.js:9338
 msgid "is required"
 msgstr "is verplicht"
 
-#: dist/assets/functions-21ad24e9.js:9338
+#: dist/assets/functions-4010f1a0.js:9339
 msgid "must be less than or before:"
 msgstr "moet minder zijn of voor:"
 
-#: dist/assets/functions-21ad24e9.js:9339
+#: dist/assets/functions-4010f1a0.js:9340
 msgid "must be less than (before) or equal to:"
 msgstr "moet minder zijn (of voor) of gelijk aan:"
 
-#: dist/assets/functions-21ad24e9.js:9340
+#: dist/assets/functions-4010f1a0.js:9341
 msgid "must be greater than (after) or equal to:"
 msgstr "moet groter zijn (of na) of gelijk aan"
 
-#: dist/assets/functions-21ad24e9.js:9341
+#: dist/assets/functions-4010f1a0.js:9342
 msgid "must be greater than or after:"
 msgstr "moet groter zijn of na:"
 
-#: dist/assets/functions-21ad24e9.js:9342
+#: dist/assets/functions-4010f1a0.js:9343
 msgid "trim whitespace characters from start and end"
 msgstr "verwijder witruimte voor en na de invoerwaarde"
 
-#: dist/assets/functions-21ad24e9.js:9343
+#: dist/assets/functions-4010f1a0.js:9344
 msgid "must be an integral number"
 msgstr "moet een geheel getal zijn"
 
-#: dist/assets/functions-21ad24e9.js:9344
+#: dist/assets/functions-4010f1a0.js:9345
 msgid "Submit label"
 msgstr "Verstuurlabel"
 
-#: dist/assets/functions-21ad24e9.js:9345
+#: dist/assets/functions-4010f1a0.js:9346
 msgid "Submit"
 msgstr "Versturen"
 
-#: dist/assets/functions-21ad24e9.js:9346
+#: dist/assets/functions-4010f1a0.js:9347
 msgid "Enter"
 msgstr "Insturen"
 
-#: dist/assets/functions-21ad24e9.js:9347
+#: dist/assets/functions-4010f1a0.js:9348
 msgid "Send"
 msgstr "Verzenden"
 
-#: dist/assets/functions-21ad24e9.js:9348
+#: dist/assets/functions-4010f1a0.js:9349
 msgid "Register"
 msgstr "Registreren"
 
-#: dist/assets/functions-21ad24e9.js:9349
+#: dist/assets/functions-4010f1a0.js:9350
 msgid "Done"
 msgstr "Klaar"
 
-#: dist/assets/functions-21ad24e9.js:9351
+#: dist/assets/functions-4010f1a0.js:9352
 msgid "Email afterwards"
 msgstr "E-mail na insturen"
 
-#: dist/assets/functions-21ad24e9.js:9352
+#: dist/assets/functions-4010f1a0.js:9353
 msgid "Enter a comma-separated list of addresses to send the form content to afterwards"
 msgstr "Geen een komma-gescheiden lijst van adressen waar de inhoud van het formulier achteraf naartoe gestuurd wordt"
 
-#: dist/assets/functions-21ad24e9.js:9353
+#: dist/assets/functions-4010f1a0.js:9354
 msgid "Email subject"
 msgstr "E-mail onderwerp"
 
-#: dist/assets/functions-21ad24e9.js:9354
+#: dist/assets/functions-4010f1a0.js:9355
 msgid "Redirect page"
 msgstr "Afsluitende pagina"
 
-#: dist/assets/functions-21ad24e9.js:9355
+#: dist/assets/functions-4010f1a0.js:9356
 msgid "Pick a date"
 msgstr "Kies een datum"
 
-#: dist/assets/functions-21ad24e9.js:9356
+#: dist/assets/functions-4010f1a0.js:9357
 msgid "Pick a time"
 msgstr "Kies een tijd"
 
-#: dist/assets/functions-21ad24e9.js:9357
+#: dist/assets/functions-4010f1a0.js:9358
 msgid "This value is required!"
 msgstr "Deze waarde is verplicht!"
 
-#: dist/assets/functions-21ad24e9.js:9376
+#: dist/assets/functions-4010f1a0.js:9377
 msgid "The form was saved successfully. You can now close this page"
 msgstr "Het formulier was succesvol opgeslagen. Je kunt deze pagina nu sluiten."
 
 #. Description of the plugin
 msgid "Creating forms attached to sheets and validate data entry"
 msgstr "Formulieren verbinden aan werkbladen, met validatie van data"
+
+#: dist/assets/functions-4010f1a0.js:9335
+msgid "Text content"
+msgstr "Tekstuele inhoud"
+
+#: dist/assets/functions-4010f1a0.js:9378
+msgid "Button colour"
+msgstr "Knopkleur"
+
+#: dist/assets/functions-4010f1a0.js:9379
+msgid "Border colour"
+msgstr "Randkleur"
+
+#: dist/assets/functions-4010f1a0.js:9380
+msgid "Text colour"
+msgstr "Tekstkleur"
+
+#: dist/assets/functions-4010f1a0.js:9381
+msgid "Label colour"
+msgstr "Labelkleur"
+
+#: dist/assets/functions-4010f1a0.js:9382
+msgid "Error colour"
+msgstr "Foutmeldingkleur"
+
+#: dist/assets/functions-4010f1a0.js:9383
+msgid "Indicator colour"
+msgstr "Indicatorkleur"

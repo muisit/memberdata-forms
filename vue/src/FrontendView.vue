@@ -97,11 +97,35 @@ function setValue(index:number, vals:any)
     }
 }
 
+function getStyling()
+{
+    let output = '<style>';
+    const bclr = (data.currentForm && data.currentForm.settings && data.currentForm.settings.borderColour) || '#aaaaaa';
+    const eclr = (data.currentForm && data.currentForm.settings && data.currentForm.settings.errorColour) || '#ff0000';
+    const rclr = (data.currentForm && data.currentForm.settings && data.currentForm.settings.requiredColour) || '#ff0000';
+    const tclr = (data.currentForm && data.currentForm.settings && data.currentForm.settings.textColour) || '#000000';
+    const lclr = (data.currentForm && data.currentForm.settings && data.currentForm.settings.labelColour) || '#000000';
+    const btclr = (data.currentForm && data.currentForm.settings && data.currentForm.settings.buttonColour) || '#409eff';
+
+    output += '#memberdata_forms-fe form.el-form .field-settings .el-input__wrapper { box-shadow: 0 0 0 1px ' + bclr + ' inset; }\r\n';
+    output += '#memberdata_forms-fe form.el-form .field-settings .errors { color: ' + eclr + ';}';
+    output += '#memberdata_forms-fe form.el-form .field-settings .required-indicator { color: ' + rclr + ';}';
+    output += '#memberdata_forms-fe form.el-form .field-settings label { color: ' + lclr + ';}';
+    output += '#memberdata_forms-fe form.el-form .field-settings .text { color: ' + tclr + ';}';
+    output += '#memberdata_forms-fe form.el-form .field-settings .el-input__wrapper { color: ' + tclr + ';}';
+    output += '#memberdata_forms-fe form.el-form .field-settings .el-input__wrapper input { color: ' + tclr + ';}';
+    output += '#memberdata_forms-fe form.el-form .action-buttons button { background-color: ' + btclr + ';}';
+
+    output += '</style>';
+    return output;
+}
+
 import { ElForm, ElButton } from 'element-plus';
 import FEField from './components/FEField.vue';
 </script>
 <template>
     <div class="memberdata-forms">
+        <span v-html="getStyling()"></span>
         <ElForm>
           <FEField v-for="(field, index) in getFields()" :key="index" :field="field" :errors="getErrorsForField(index)" @update="(e) => setValue(index, e)"/>
           <div class="action-buttons">

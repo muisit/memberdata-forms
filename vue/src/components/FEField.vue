@@ -44,7 +44,7 @@ import { ElFormItem, ElInput, ElCheckbox } from 'element-plus';
             {{  props.field.label }}
             <span class='required-indicator'>*</span>
         </label>
-        <label v-else>
+        <label v-if="!isRequired() && fieldType() != 'text'">
             {{  props.field.label }}
         </label>
         <ElFormItem class="input">
@@ -56,6 +56,7 @@ import { ElFormItem, ElInput, ElCheckbox } from 'element-plus';
             <TimeInput :field="props.field" v-if="fieldType() == 'time'" :value="fieldValue" @update="setFieldValue"/>
             <SelectInput :field="props.field" v-if="['select', 'uselect', 'mselect'].includes(fieldType())" :value="fieldValue" @update="setFieldValue"/>
             <ElCheckbox v-if="fieldType() == 'checkbox'" :model-value="fieldValue == 'Y'" @update:model-value="(e) => setFieldValue(e ? 'Y' : 'N')" />
+            <span class="text" v-if="fieldType() == 'text'">{{  props.field.defaultValue }}</span>
         </ElFormItem>
         <div class="errors">
             <span v-for="error in props.errors" :key="error">{{  error }}<br/></span>

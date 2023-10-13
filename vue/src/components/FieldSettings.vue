@@ -9,6 +9,11 @@ defineEmits(['onUpdate']);
 
 const showDialog = ref(false);
 
+function showText()
+{
+    return props.field.type && props.field.type == 'text';
+}
+
 function showTextInput()
 {
     return !props.field.type || ['text-line','number','date', 'email', 'time'].includes(props.field.type);
@@ -67,6 +72,7 @@ import { ElIcon, ElInput, ElSelect, ElOption, ElCheckbox, ElRadio, ElRadioGroup 
                 <ElRadio>{{ lang.OPTION2 }}</ElRadio>
                 <ElRadio>{{ lang.OPTION3 }}</ElRadio>
             </ElRadioGroup>
+            <span v-if="showText()">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</span>
         </div>
         <div class="fieldvalue-handle">
             <ElIcon size="large">

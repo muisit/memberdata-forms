@@ -81,6 +81,11 @@ function isNotHiddenType()
     return !props.field.type || props.field.type != 'hidden';
 }
 
+function isNotTextContentType()
+{
+    return !props.field.type || props.field.type != 'text';
+}
+
 import { ElForm, ElFormItem, ElInput, ElButton, ElDialog, ElSelect, ElOption, ElCheckbox } from 'element-plus'
 </script>
 <template>
@@ -90,7 +95,7 @@ import { ElForm, ElFormItem, ElInput, ElButton, ElDialog, ElSelect, ElOption, El
                 <ElInput :model-value="props.field.label || ''" @update:model-value="(e) => update('label', e)"/>
             </ElFormItem>
             <ElFormItem :label="lang.TYPE">
-                <ElSelect  :model-value="props.field.type || 'text'" @update:model-value="(e) => update('type', e)">
+                <ElSelect :model-value="props.field.type || 'text-line'" @update:model-value="(e) => update('type', e)">
                     <ElOption value="text-line" :label="lang.OPTIONTEXT"/>
                     <ElOption value="text-area" :label="lang.OPTIONAREA"/>
                     <ElOption value="number" :label="lang.OPTIONNUMBER"/>
@@ -101,10 +106,11 @@ import { ElForm, ElFormItem, ElInput, ElButton, ElDialog, ElSelect, ElOption, El
                     <ElOption value="mselect" :label="lang.OPTIONMSELECT"/>
                     <ElOption value="uselect" :label="lang.OPTIONUSELECT"/>
                     <ElOption value="checkbox" :label="lang.OPTIONCHECKBOX"/>
+                    <ElOption value="text" :label="lang.OPTIONTEXTCONTENT"/>
                     <ElOption value="hidden" :label="lang.OPTIONHIDDEN"/>
                 </ElSelect>
             </ElFormItem>
-            <ElFormItem :label="lang.ATTRIBUTE">
+            <ElFormItem :label="lang.ATTRIBUTE" v-if="isNotTextContentType()">
                 <ElSelect  :model-value="props.field.attribute || ''" @update:model-value="(e) => update('attribute', e)">
                     <ElOption :label="lang.SELECTATTRIBUTE" value=""/>
                     <ElOption v-for="attr in data.attributes" :key="attr" :value="attr" :label="attr"/>
@@ -131,7 +137,7 @@ import { ElForm, ElFormItem, ElInput, ElButton, ElDialog, ElSelect, ElOption, El
                     {{ lang.RULEUSEWIDGET }}
                 </ElCheckbox>               
             </ElFormItem>
-            <ElFormItem v-if="isNotHiddenType()">
+            <ElFormItem v-if="isNotHiddenType() && isNotTextContentType()">
                 <label class="el-form-item__label">{{ lang.RULES }}</label>
                 <table>
                     <tr>
