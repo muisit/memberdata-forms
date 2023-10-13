@@ -14,7 +14,8 @@ data.nonce = props.nonce;
 data.baseUrl = props.url;
 data.getConfiguration();
 data.getForms().then(() => tabindex.value = '' + data.forms[0].id);
-
+// retrieve list of sheets to circumvent the case where all forms have no sheet assigned yet
+data.getBasicSettings();
 const tabindex = ref('settings');
 const tabskey = ref(random_token());
 
