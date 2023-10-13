@@ -25,7 +25,7 @@ export interface APIResult {
 export interface Form {
     id: number;
     name: string;
-    sheet: number;
+    sheet_id: number;
     settings: any;
 }
 

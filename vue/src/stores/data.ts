@@ -12,7 +12,7 @@ export const useDataStore = defineStore('data', () => {
     const sheets:Ref<Array<Sheet>> = ref([]);
     const pages:Ref<Array<WPPost>> = ref([]);
     const forms:Ref<Array<Form>> = ref([]);
-    const currentForm:Ref<Form>  =ref({id:0, name: '', sheet: 0, settings: {}});
+    const currentForm:Ref<Form>  =ref({id:0, name: '', sheet_id: 0, settings: {}});
     const attributes:Ref<Array<string>> = ref([]);
 
     function getConfiguration()
@@ -23,7 +23,7 @@ export const useDataStore = defineStore('data', () => {
 
     function getBasicSettings()
     {
-        return basicSettings(currentForm.value ? (currentForm.value.sheet || 0) : 0).then((data:any) => {
+        return basicSettings(currentForm.value ? (currentForm.value.sheet_id || 0) : 0).then((data:any) => {
             attributes.value = data.data.attributes || [];
             sheets.value = data.data.sheets || [];
             pages.value = data.data.pages || [];

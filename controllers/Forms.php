@@ -67,17 +67,12 @@ class Forms extends Base
             $model->load();
         }
         $model->name = $modelData['name'] ?? '';
-        $model->sheet_id = empty($modelData['sheet']) ? null : intval($modelData['sheet']);
+        $model->sheet_id = empty($modelData['sheet_id']) ? null : intval($modelData['sheet_id']);
         $model->settings = $modelData['settings'] ?? (object)[];
 
         if ($model->validate()) {
             $model->save();
-            return [
-                'name' => $model->name,
-                'sheet' => $model->sheet_id,
-                'id' => $model->getKey(),
-                'settings' => json_decode(json_encode($model->getSettings()), true)
-            ];
+            return $model->export();
         }
         else {
             return false;

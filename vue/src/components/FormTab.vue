@@ -23,13 +23,12 @@ watch(
 )
 
 watch(
-    () => data.currentForm?.sheet,
+    () => data.currentForm?.sheet_id,
     (nw) => {
-        if (nw) {
+        if (nw && props.visible) {
             data.getBasicSettings();
         }
-    },
-    { immediate: true }
+    }
 )
 
 import { saveForm as saveFormAPI } from '@/lib/api';
@@ -157,6 +156,7 @@ import FormFieldEditor from './FormFieldEditor.vue';
         <datalist :id="datalistId">
             <option v-for="page in data.pages" :key="page.id" :value="page.slug">{{  page.title }}</option>
         </datalist>
+        {{ data.currentForm.sheet_id }}
         <ElForm>
             <ElFormItem>
                 <label class="el-form-item__label">{{  lang.SHORTCODE }}</label>
@@ -166,7 +166,7 @@ import FormFieldEditor from './FormFieldEditor.vue';
                 <ElInput v-model="data.currentForm.name"/>
             </ElFormItem>
             <ElFormItem :label="lang.SHEET">
-                <ElSelect v-model="data.currentForm.sheet">
+                <ElSelect v-model="data.currentForm.sheet_id">
                     <ElOption :value="0" :label="lang.SHEETSELECT"/>
                     <ElOption v-for="sheet in data.sheets" :key="sheet.id" :value="sheet.id" :label="sheet.name"/>
                 </ElSelect>

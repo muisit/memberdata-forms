@@ -14,7 +14,6 @@ data.nonce = props.nonce;
 data.baseUrl = props.url;
 data.getConfiguration();
 data.getForms().then(() => tabindex.value = '' + data.forms[0].id);
-data.getBasicSettings();
 
 const tabindex = ref('settings');
 const tabskey = ref(random_token());
