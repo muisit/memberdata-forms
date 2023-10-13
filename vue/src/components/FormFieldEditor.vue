@@ -4,7 +4,7 @@ import lang from '@/lib/lang';
 const props = defineProps<{
     fieldlist: Array<Field>
 }>();
-defineEmits(['addField', 'onUpdate', 'onSort']);
+defineEmits(['addField', 'onUpdate', 'onSort', 'onDelete']);
 
 function dragStart()
 {
@@ -29,7 +29,7 @@ import { ElButton } from 'element-plus';
                 @start="dragStart" 
                 item-key="item.token">
                 <template #item="{element}">
-                    <FieldSettings :field="element" @on-update="(e) => $emit('onUpdate', e)"/>
+                    <FieldSettings :field="element" @on-update="(e) => $emit('onUpdate', e)" @on-delete="() => $emit('onDelete', element)"/>
                 </template>
             </draggable>
         </div>

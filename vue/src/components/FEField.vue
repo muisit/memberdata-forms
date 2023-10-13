@@ -2,15 +2,13 @@
 import { ref } from 'vue';
 import type { Field } from '@/lib/types';
 import lang from '@/lib/lang';
-import { replaceNowValue } from '@/lib/functions';
 const props = defineProps<{
     field: Field;
     errors: Array<string>|null;
 }>();
 const emits = defineEmits(['update']);
 
-const fieldValue = ref(replaceNowValue(props.field.defaultValue) || '');
-
+const fieldValue = ref(props.field.defaultValue || '');
 
 function setFieldValue(v:string)
 {
@@ -32,6 +30,12 @@ function isRequired()
     return props.field && props.field.rules && (typeof props.field.rules['required'] != 'undefined');
 }
 
+function getDefaultHeight()
+{
+    if (!props.field || !props.field.options) return 3;
+    return parseInt(props.field.options);
+}
+
 import NumberInput from './inputs/NumberInput.vue';
 import DateInput from './inputs/DateInput.vue';
 import TimeInput from './inputs/DateInput.vue';
@@ -49,7 +53,7 @@ import { ElFormItem, ElInput, ElCheckbox } from 'element-plus';
         </label>
         <ElFormItem class="input">
             <ElInput v-if="fieldType() == 'text-line'" :model-value="fieldValue" @update:model-value="(e) => setFieldValue(e)"/>
-            <ElInput v-if="fieldType() == 'text-area'" type='text-area' :model-value="fieldValue" @update:model-value="(e) => setFieldValue(e)"/>
+            <ElInput v-if="fieldType() == 'text-area'" type='textarea' :model-value="fieldValue" :rows="getDefaultHeight()" @update:model-value="(e) => setFieldValue(e)"/>
             <ElInput v-if="fieldType() == 'email'" type='email' :model-value="fieldValue" @update:model-value="(e) => setFieldValue(e)"/>
             <NumberInput :field="props.field" v-if="fieldType() == 'number'" :value="fieldValue" @update="setFieldValue"/>
             <DateInput :field="props.field" v-if="fieldType() == 'date'" :value="fieldValue" @update="setFieldValue"/>

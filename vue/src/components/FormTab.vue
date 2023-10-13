@@ -114,6 +114,13 @@ function onSort(newlist:any)
     }
 }
 
+function onDelete(field:Field)
+{
+    if (data.currentForm && data.currentForm.settings && data.currentForm.settings.fields && confirm(lang.CONFIRMDELETEFIELD)) {
+        data.currentForm.settings.fields = data.currentForm.settings.fields.filter((f:Field) => f.token != field.token);
+    }
+}
+
 function getSetting(field:string, defaultValue:string = '')
 {
     if (data.currentForm && data.currentForm.settings) {
@@ -212,7 +219,7 @@ import FormFieldEditor from './FormFieldEditor.vue';
                 <ElButton @click="saveForm" type="primary">{{  lang.SAVE }}</ElButton>
             </div>
 
-            <FormFieldEditor :fieldlist="getFields()" @add-field="addField" @on-update="onUpdate" @on-sort="onSort"/>
+            <FormFieldEditor :fieldlist="getFields()" @add-field="addField" @on-update="onUpdate" @on-sort="onSort" @on-delete="onDelete"/>
         </ElForm>
     </div>
 </template>

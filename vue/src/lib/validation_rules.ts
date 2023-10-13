@@ -61,13 +61,13 @@ function comparisonFunc(fieldValues:FieldValues, value:string, callback:Function
     if (fieldValues.type == 'int') {
         const limit = parseInt(fieldValues.parameter);
         const val = parseInt(value);
-        return callback(fieldValues, 'value', val, limit);
+        return callback(fieldValues, 'value', val, limit, limit);
     }
     else if (fieldValues.type == 'number') {
         const limitb = parseFloat(fieldValues.parameter);
         const valb = parseFloat(value);
         if (!isNaN(limitb) && !isNaN(valb)) {
-            return callback(fieldValues, 'value', valb, limitb);
+            return callback(fieldValues, 'value', valb, limitb, limitb);
         }
     }
     else if(fieldValues.type == 'date') {
@@ -80,7 +80,7 @@ function comparisonFunc(fieldValues:FieldValues, value:string, callback:Function
             dt2 = dayjs(fieldValues.parameter);
         }
         if (dt.isValid() && dt2.isValid()) {
-            return callback(fieldValues, 'date', dt, dt2);
+            return callback(fieldValues, 'date', dt, dt2, dt2.format(convertDateToDayJSDateFormat(fieldValues.options)));
         }
     }
     else if(fieldValues.type == 'time') {
@@ -88,13 +88,13 @@ function comparisonFunc(fieldValues:FieldValues, value:string, callback:Function
         const dta = dayjs(value, convertDateToDayJSTimeFormat(fieldValues.options));
         const dt2a = dayjs(fieldValues.parameter, convertDateToDayJSTimeFormat(fieldValues.options));
         if (dta.isValid() && dt2a.isValid()) {
-            return callback(fieldValues, 'date', dta, dt2a);
+            return callback(fieldValues, 'date', dta, dt2a, dt2a.format(convertDateToDayJSTimeFormat(fieldValues.options)));
         }
     }
     else {
         const limitc = parseInt(fieldValues.parameter);
         const valc = value.length;
-        return callback(fieldValues, 'length', valc, limitc);
+        return callback(fieldValues, 'length', valc, limitc, limitc);
     }
     return {value: value};
 }
@@ -132,21 +132,21 @@ const ruleImplementations:RuleImplementationObject = {
         return {value: value};
     },
     'lte': function (fieldValues:FieldValues, value:string): RuleValidationResult {
-        return comparisonFunc(fieldValues, value, (fieldValues:FieldValues, tp: string, val: number|any, limit: number|any) => {
+        return comparisonFunc(fieldValues, value, (fieldValues:FieldValues, tp: string, val: any, limit: any, msglabel:any) => {
             switch (tp) {
                 case 'value':
                     if (val > limit) {
-                        return {value: value, message: lang.replace(lang.MSGRULELTE, fieldValues.name, limit)};
+                        return {value: value, message: lang.replace(lang.MSGRULELTE, fieldValues.name, msglabel)};
                     }
                     break;
                 case 'length':
                     if (val > limit) {
-                        return {value: value, message: lang.replace(lang.MSGRULELTELENGTH, fieldValues.name, limit)};
+                        return {value: value, message: lang.replace(lang.MSGRULELTELENGTH, fieldValues.name, msglabel)};
                     }
                     break;
                 case 'date':
                     if (val.isAfter(limit)) {
-                        return {value: value, message: lang.replace(lang.MSGRULELTEDATE, fieldValues.name, limit.format(convertDateToDayJSFormat(fieldValues.options)))};
+                        return {value: value, message: lang.replace(lang.MSGRULELTEDATE, fieldValues.name, msglabel)};
                     }
                     break;
             }
@@ -154,21 +154,21 @@ const ruleImplementations:RuleImplementationObject = {
         });
     },
     'lt': function (fieldValues:FieldValues, value:string): RuleValidationResult {
-        return comparisonFunc(fieldValues, value, (fieldValues:FieldValues, tp: string, val: number|any, limit: number|any) => {
+        return comparisonFunc(fieldValues, value, (fieldValues:FieldValues, tp: string, val: any, limit: any, msglabel:any) => {
             switch (tp) {
                 case 'value':
                     if (val >= limit) {
-                        return {value: value, message: lang.replace(lang.MSGRULELT, fieldValues.name, limit)};
+                        return {value: value, message: lang.replace(lang.MSGRULELT, fieldValues.name, msglabel)};
                     }
                     break;
                 case 'length':
                     if (val >= limit) {
-                        return {value: value, message: lang.replace(lang.MSGRULELTLENGTH, fieldValues.name, limit)};
+                        return {value: value, message: lang.replace(lang.MSGRULELTLENGTH, fieldValues.name, msglabel)};
                     }
                     break;
                 case 'date':
                     if (!val.isBefore(limit)) {
-                        return {value: value, message: lang.replace(lang.MSGRULELTDATE, fieldValues.name, limit.format(convertDateToDayJSFormat(fieldValues.options)))};
+                        return {value: value, message: lang.replace(lang.MSGRULELTDATE, fieldValues.name, msglabel)};
                     }
                     break;
             }
@@ -176,21 +176,21 @@ const ruleImplementations:RuleImplementationObject = {
         });
     },
     'gt': function (fieldValues:FieldValues, value:string): RuleValidationResult {
-        return comparisonFunc(fieldValues, value, (fieldValues:FieldValues, tp: string, val: number|any, limit: number|any) => {
+        return comparisonFunc(fieldValues, value, (fieldValues:FieldValues, tp: string, val: any, limit: any, msglabel:any) => {
             switch (tp) {
                 case 'value':
                     if (val <= limit) {
-                        return {value: value, message: lang.replace(lang.MSGRULEGT, fieldValues.name, limit)};
+                        return {value: value, message: lang.replace(lang.MSGRULEGT, fieldValues.name, msglabel)};
                     }
                     break;
                 case 'length':
                     if (val <= limit) {
-                        return {value: value, message: lang.replace(lang.MSGRULEGTLENGTH, fieldValues.name, limit)};
+                        return {value: value, message: lang.replace(lang.MSGRULEGTLENGTH, fieldValues.name, msglabel)};
                     }
                     break;
                 case 'date':
                     if (!val.isAfter(limit)) {
-                        return {value: value, message: lang.replace(lang.MSGRULEGTDATE, fieldValues.name, limit.format(convertDateToDayJSFormat(fieldValues.options)))};
+                        return {value: value, message: lang.replace(lang.MSGRULEGTDATE, fieldValues.name, msglabel)};
                     }
                     break;
             }
@@ -198,21 +198,21 @@ const ruleImplementations:RuleImplementationObject = {
         });
     },
     'gte': function (fieldValues:FieldValues, value:string): RuleValidationResult {
-        return comparisonFunc(fieldValues, value, (fieldValues:FieldValues, tp: string, val: number|any, limit: number|any) => {
+        return comparisonFunc(fieldValues, value, (fieldValues:FieldValues, tp: string, val: any, limit: any, msglabel:any) => {
             switch (tp) {
                 case 'value':
                     if (val < limit) {
-                        return {value: value, message: lang.replace(lang.MSGRULEGTE, fieldValues.name, limit)};
+                        return {value: value, message: lang.replace(lang.MSGRULEGTE, fieldValues.name, msglabel)};
                     }
                     break;
                 case 'length':
                     if (val < limit) {
-                        return {value: value, message: lang.replace(lang.MSGRULEGTELENGTH, fieldValues.name, limit)};
+                        return {value: value, message: lang.replace(lang.MSGRULEGTELENGTH, fieldValues.name, msglabel)};
                     }
                     break;
                 case 'date':
                     if (val.isBefore(limit)) {
-                        return {value: value, message: lang.replace(lang.MSGRULEGTEDATE, fieldValues.name, limit.format(convertDateToDayJSFormat(fieldValues.options)))};
+                        return {value: value, message: lang.replace(lang.MSGRULEGTEDATE, fieldValues.name, msglabel)};
                     }
                     break;
             }

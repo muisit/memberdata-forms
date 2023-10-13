@@ -27,6 +27,10 @@ function hasFormat()
 {
     return props.field.type && ['number', 'date', 'time'].includes(props.field.type);
 }
+function hasHeight()
+{
+    return props.field.type && ['text-area'].includes(props.field.type);
+}
 function hasWidget()
 {
     return props.field.type && ['number', 'email', 'date', 'time'].includes(props.field.type);
@@ -127,6 +131,10 @@ import { ElForm, ElFormItem, ElInput, ElButton, ElDialog, ElSelect, ElOption, El
             <ElFormItem :label="lang.FORMAT" v-if="hasFormat()">
                 <ElInput :model-value="props.field.options || ''" @update:model-value="(e) => update('options', e)" type="area"/>
                 <div class="descr">{{ lang.FORMATDESCR }}</div>
+            </ElFormItem>
+            <ElFormItem :label="lang.HEIGHT" v-if="hasHeight()">
+                <ElInput :model-value="props.field.options || ''" @update:model-value="(e) => update('options', e)" type="area"/>
+                <div class="descr">{{ lang.HEIGHTDESCR }}</div>
             </ElFormItem>
             <ElFormItem v-if="hasWidget()">
                 <label class="el-form-item__label">{{ lang.RULEWIDGET }}</label>

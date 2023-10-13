@@ -7,7 +7,7 @@ const props = defineProps<{
     form:number;
 }>();
 import type { Field } from './lib/types';
-import { random_token } from './lib/functions';
+import { random_token, replaceNowValue } from './lib/functions';
 import { useDataStore } from './stores/data';
 import lang from '@/lib/lang';
 import { validate_all_fields } from '@/lib/validate_all_fields';
@@ -27,6 +27,8 @@ function getFields()
     }
     return data.currentForm.settings.fields.map((fld:Field) => {
         fld.token = random_token();
+        fld.options = replaceNowValue(fld.options);
+        fld.defaultValue = replaceNowValue(fld.defaultValue);
         return fld;
     });
 }

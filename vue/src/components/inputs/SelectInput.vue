@@ -43,16 +43,17 @@ function getOptions()
 
 function isSet(opt:string)
 {
-    return getOptions().includes(opt);
+    if (!props.value || props.value.length == 0) return false;
+    return props.value.split('|').includes(opt);
 }
 
 function toggleOpt(opt:string, isset:any)
 {
-    let vals = getOptions();
-    if (isset && vals.includes(opt)) {
+    let vals = props.value ? props.value.split('|') : [];
+    if (!isset && vals.includes(opt)) {
         vals = vals.filter((v) => v != opt);
     }
-    else if(!isset && !vals.includes(opt)) {
+    else if(isset && !vals.includes(opt)) {
         vals.push(opt);
     }
     emits('update', vals.join('|'));

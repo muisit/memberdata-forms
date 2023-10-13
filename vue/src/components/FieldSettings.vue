@@ -5,7 +5,7 @@ import lang from '@/lib/lang';
 const props = defineProps<{
     field: Field
 }>();
-defineEmits(['onUpdate']);
+defineEmits(['onUpdate', 'onDelete']);
 
 const showDialog = ref(false);
 
@@ -45,7 +45,7 @@ function showMultiRadioInput()
 }
 
 import FieldDialog from './FieldDialog.vue';
-import { Setting, Rank } from '@element-plus/icons-vue';
+import { Setting, Rank, Delete } from '@element-plus/icons-vue';
 import { ElIcon, ElInput, ElSelect, ElOption, ElCheckbox, ElRadio, ElRadioGroup } from 'element-plus'
 </script>
 <template>
@@ -81,6 +81,9 @@ import { ElIcon, ElInput, ElSelect, ElOption, ElCheckbox, ElRadio, ElRadioGroup 
         </div>
         <div class="settings">
             <ElIcon size="large" @click="() => showDialog = true"><Setting/></ElIcon>
+        </div>
+        <div class="trash">
+            <ElIcon size="large" @click="() => $emit('onDelete')"><Delete/></ElIcon>
         </div>
         <FieldDialog :visible="showDialog" @on-close="() => showDialog = false" @on-update="(e) => $emit('onUpdate', e)" :field="props.field" />
     </div>
