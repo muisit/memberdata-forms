@@ -53,7 +53,6 @@ function validateAndSubmit()
 
     if (cnt == 0) {
         // save, then redirect to the thank you page
-        console.log(results);
         saveResults(data.currentForm.id, results)
             .then((data) => {
                 if (!data || !data.data) {

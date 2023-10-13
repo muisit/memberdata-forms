@@ -71,7 +71,6 @@ class Forms extends Base
         $model->settings = $modelData['settings'] ?? (object)[];
 
         if ($model->validate()) {
-            error_log("validated model, saving " . json_encode($model->settings));
             $model->save();
             return [
                 'name' => $model->name,

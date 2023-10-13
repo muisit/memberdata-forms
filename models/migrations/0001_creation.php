@@ -1,6 +1,6 @@
 <?php
 
-namespace MemberDataRanking\Models;
+namespace MemberDataForms\Models;
 
 use MemberData\Models\MigrationObject;
 

@@ -100,7 +100,7 @@ class FormSubmissionService
             );
 
             if (count($settings['messages'])) {
-                error_log("Form submission causes errors in MemberData row entry: " . json_encode($settings));
+                memberdata_log("Form submission causes errors in MemberData row entry: " . json_encode($settings));
             }
         }
     }
@@ -226,7 +226,7 @@ class FormSubmissionService
                         }
                     }
                     catch (\Exception $e) {
-                        error_log("validation exception on date/time: " . $e->getMessage());
+                        memberdata_log("validation exception on date/time: " . $e->getMessage());
                     }
                     // the value should have been formatted in the front-end. We only check
                     // that the passed value, in this format, actually resolves to that value

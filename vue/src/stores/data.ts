@@ -41,7 +41,6 @@ export const useDataStore = defineStore('data', () => {
 
     function getForm(id:number)
     {
-        console.log('getting single form', id);
         return getSingleForm(id)
             .then((data) => {
                 if (data && data.data) {
