@@ -12,7 +12,7 @@
  * Plugin Name:         memberdata-forms
  * Plugin URI:          https://github.com/muisit/memberdata-forms
  * Description:         Creating forms attached to sheets and validate data entry
- * Version:             1.0.2
+ * Version:             1.0.3
  * Requires at least:   6.1
  * Requires PHP:        7.2
  * Author:              Michiel Uitdehaag
@@ -38,7 +38,7 @@
  * along with memberdata-forms.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-define('MEMBERDATAFORMS_VERSION', "1.0.2");
+define('MEMBERDATAFORMS_VERSION', "1.0.3");
 define('MEMBERDATAFORMS_PACKAGENAME', 'memberdata_forms');
 
 function memberdata_forms_autoloader($name)
