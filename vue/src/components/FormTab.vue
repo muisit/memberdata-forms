@@ -156,7 +156,6 @@ import FormFieldEditor from './FormFieldEditor.vue';
         <datalist :id="datalistId">
             <option v-for="page in data.pages" :key="page.id" :value="page.slug">{{  page.title }}</option>
         </datalist>
-        {{ data.currentForm.sheet_id }}
         <ElForm>
             <ElFormItem>
                 <label class="el-form-item__label">{{  lang.SHORTCODE }}</label>

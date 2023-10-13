@@ -34,7 +34,13 @@ export const useDataStore = defineStore('data', () => {
     {
         return formsAPI().then((data) => {
             if (data && data.data) {
-                forms.value = data.data;
+                forms.value = data.data.map((form:Form) => {
+                    // workaround to fix json_encode that a converted empty PHP hash becomes an empty array
+                    if ((typeof form.settings.length) != 'undefined' && form.settings.length == 0) {
+                        form.settings = {};
+                    }
+                    return form;
+                });
             }
         });
     }
