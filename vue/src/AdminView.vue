@@ -21,7 +21,7 @@ const tabskey = ref(random_token());
 import { saveForm  } from '@/lib/api';
 function addForm()
 {
-    saveForm({id: 0, name: lang.NEWFORM, sheet: 0, settings: null})
+    saveForm({id: 0, name: lang.NEWFORM, sheet_id: 0, settings: null})
         .then((retval:APIResult) => {
             if (retval && retval.data && retval.data.errors && retval.data.errors.length) {
                 alert(lang.ERROR_SAVE_FORM + retval.data.errors.join('\r\n'));
