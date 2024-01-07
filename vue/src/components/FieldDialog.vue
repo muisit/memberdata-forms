@@ -23,6 +23,10 @@ function hasOptions()
 {
     return props.field.type && ['select', 'mselect', 'uselect'].includes(props.field.type);
 }
+function hasStyling()
+{
+    return props.field.type && ['text'].includes(props.field.type);
+}
 function hasFormat()
 {
     return props.field.type && ['number', 'date', 'time'].includes(props.field.type);
@@ -127,6 +131,10 @@ import { ElForm, ElFormItem, ElInput, ElButton, ElDialog, ElSelect, ElOption, El
             <ElFormItem :label="lang.OPTIONS" v-if="hasOptions()">
                 <ElInput :model-value="props.field.options || ''" @update:model-value="(e) => update('options', e)" type="area"/>
                 <div class="descr">{{ lang.OPTIONSDESCR }}</div>
+            </ElFormItem>
+            <ElFormItem :label="lang.STYLING" v-if="hasStyling()">
+                <ElInput :model-value="props.field.options || ''" @update:model-value="(e) => update('options', e)" type="textarea" height="3"/>
+                <div class="descr">{{ lang.STYLINGDESCR }}</div>
             </ElFormItem>
             <ElFormItem :label="lang.FORMAT" v-if="hasFormat()">
                 <ElInput :model-value="props.field.options || ''" @update:model-value="(e) => update('options', e)" type="area"/>

@@ -197,6 +197,9 @@ import FormFieldEditor from './FormFieldEditor.vue';
             <ElFormItem :label="lang.REDIRECTPAGE">
                 <ElInput :model-value="getSetting('redirectPage')" @update:model-value="(e) => setSetting('redirectPage', e)" :list="datalistId"/>
             </ElFormItem>
+            <ElFormItem :label="lang.STYLING">
+                <ElInput :model-value="getSetting('styling', '')" @update:model-value="(e) => setSetting('styling', e)" type="textarea" height="3"/>
+            </ElFormItem>
             <ElFormItem :label="lang.BUTTONCOLOUR">
                 <ElColorPicker :model-value="getSetting('buttonColour', '#409eff')" @update:model-value="(e) => setSetting('buttonColour', e)" :predefine="predefineColors"/>
             </ElFormItem>

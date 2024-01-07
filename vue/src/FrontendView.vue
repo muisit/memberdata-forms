@@ -124,6 +124,7 @@ function getStyling()
     output += '#memberdata_forms-fe form.el-form .field-settings .el-input__wrapper input { color: ' + tclr + ';}';
     output += '#memberdata_forms-fe form.el-form .action-buttons button { background-color: ' + btclr + ';}';
 
+    output += data.currentForm && data.currentForm.settings && data.currentForm.settings.styling ? data.currentForm.settings.styling : '';
     output += '</style>';
     return output;
 }

@@ -34,6 +34,8 @@ export default {
     TYPE: __('Type', 'memberdata-forms'),
     OPTIONS: __('Options', 'memberdata-forms'),
     OPTIONSDESCR: __('Enter a list of values, separated with bars (|)', 'memberdata-forms'),
+    STYLING: __('Style', 'memberdata-forms'),
+    STYLINGDESCR: __('Enter an optional style sheet', 'memberdata-forms'),
     FORMAT: __('Format', 'memberdata-forms'),
     FORMATDESCR: __('Examples: \'Y-m-d\', \'H:i:s\', \'0.00\'', 'memberdata-forms'),
     HEIGHT: __('Height', 'memberdata-forms'),

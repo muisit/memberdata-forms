@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import type { Field } from '@/lib/types';
 import lang from '@/lib/lang';
 const props = defineProps<{
@@ -36,6 +36,11 @@ function getDefaultHeight()
     return parseInt(props.field.options);
 }
 
+const styleValue = computed(() => {
+    if (!props.field || !props.field.options) return '';
+    return '<style>' + props.field.options + '</style>';
+});
+
 import NumberInput from './inputs/NumberInput.vue';
 import DateInput from './inputs/DateInput.vue';
 import TimeInput from './inputs/DateInput.vue';
@@ -60,7 +65,8 @@ import { ElFormItem, ElInput, ElCheckbox } from 'element-plus';
             <TimeInput :field="props.field" v-if="fieldType() == 'time'" :value="fieldValue" @update="setFieldValue"/>
             <SelectInput :field="props.field" v-if="['select', 'uselect', 'mselect'].includes(fieldType())" :value="fieldValue" @update="setFieldValue"/>
             <ElCheckbox v-if="fieldType() == 'checkbox'" :model-value="fieldValue == 'Y'" @update:model-value="(e) => setFieldValue(e ? 'Y' : 'N')" />
-            <span class="text" v-if="fieldType() == 'text'">{{  props.field.defaultValue }}</span>
+            <span v-if="fieldType() == 'text' && styleValue.length > 0" v-html="styleValue"></span>
+            <span class="text" v-if="fieldType() == 'text'" v-html="props.field.defaultValue"></span>
         </ElFormItem>
         <div class="errors">
             <span v-for="error in props.errors" :key="error">{{  error }}<br/></span>
