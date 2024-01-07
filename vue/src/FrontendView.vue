@@ -19,6 +19,7 @@ data.getForm(props.form);
 
 const fieldValues:Ref<Array<string>> = ref([]);
 const fieldErrors:Ref<Array<Array<string>>> = ref([]);
+const submitDisabled = ref(false);
 
 function getFields()
 {
@@ -43,6 +44,7 @@ function getSubmitLabel()
 
 function validateAndSubmit()
 {
+    submitDisabled.value = true;
     let validationResult = validate_all_fields(getFields(), fieldValues.value);
     fieldErrors.value = [];
     let results:string[] = [];
@@ -57,6 +59,7 @@ function validateAndSubmit()
         // save, then redirect to the thank you page
         saveResults(data.currentForm.id, results)
             .then((data) => {
+                submitDisabled.value = false;
                 if (!data || !data.data) {
                     throw new Error("Invalid data");
                 }
@@ -73,7 +76,11 @@ function validateAndSubmit()
             .catch((e) => {
                 console.log(e);
                 alert(lang.ERROR_SAVE_RESULTS);
+                submitDisabled.value = false;
             });
+    }
+    else {
+        submitDisabled.value = false;
     }
 }
 
@@ -130,7 +137,7 @@ import FEField from './components/FEField.vue';
         <ElForm>
           <FEField v-for="(field, index) in getFields()" :key="index" :field="field" :errors="getErrorsForField(index)" @update="(e) => setValue(index, e)"/>
           <div class="action-buttons">
-              <ElButton type="primary" @click="validateAndSubmit">{{ getSubmitLabel()}}</ElButton>
+              <ElButton type="primary" @click="validateAndSubmit" :disabled="submitDisabled">{{ getSubmitLabel()}}</ElButton>
           </div>
         </ElForm>
     </div>

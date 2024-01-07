@@ -307,7 +307,7 @@ class FormSubmissionService
                 /* translators: %1$s is replaced with the field label, %2$f with the target value */
                 $msgnum = sprintf(__('%1$s must be smaller than %2$f', 'memberdata-forms'), $name, $type == 'number' ? $val : 0);
                 /* translators: %1$s is replaced with the field label, %2$s with the target value */
-                $msgdate = sprintf(__('%1$s must be before %2$s', 'memberdata-forms'), $name, ($type == 'date' || $type == 'time') ? $val->format($options) : '');
+                $msgdate = sprintf(__('%1$s must be before %2$s', 'memberdata-forms'), $name, ($type == 'date' || $type == 'time') ? self::safeFormat($val, $options) : '');
                 /* translators: %1$s is replaced with the field label, %2$d with the target value */
                 $msglength = sprintf(__('%1$s must be smaller than %2$d characters', 'memberdata-forms'), $name, !($type == 'date' || $type == 'time') ? $val : 0);
                 break;
@@ -316,7 +316,7 @@ class FormSubmissionService
                 /* translators: %1$s is replaced with the field label, %2$f with the target value */
                 $msgnum = sprintf(__('%1$s must be smaller than or equal to %2$f', 'memberdata-forms'), $name, $type == 'number' ? $val : 0);
                 /* translators: %1$s is replaced with the field label, %2$s with the target value */
-                $msgdate = sprintf(__('%1$s must be before or at %2$s', 'memberdata-forms'), $name, ($type == 'date' || $type == 'time') ? $val->format($options) : '');
+                $msgdate = sprintf(__('%1$s must be before or at %2$s', 'memberdata-forms'), $name, ($type == 'date' || $type == 'time') ? self::safeFormat($val, $options) : '');
                 /* translators: %1$s is replaced with the field label, %2$d with the target value */
                 $msglength = sprintf(__('%1$s must be smaller than or equal to %2$d characters', 'memberdata-forms'), $name, !($type == 'date' || $type == 'time') ? $val : 0);
                 break;
@@ -325,7 +325,7 @@ class FormSubmissionService
                 /* translators: %1$s is replaced with the field label, %2$f with the target value */
                 $msgnum = sprintf(__('%1$s must be greater than or equal to %2$f', 'memberdata-forms'), $name, $type == 'number' ? $val : 0);
                 /* translators: %1$s is replaced with the field label, %2$s with the target value */
-                $msgdate = sprintf(__('%1$s must be at or after %2$s', 'memberdata-forms'), $name, ($type == 'date' || $type == 'time') ? $val->format($options) : '');
+                $msgdate = sprintf(__('%1$s must be at or after %2$s', 'memberdata-forms'), $name, ($type == 'date' || $type == 'time') ? self::safeFormat($val, $options) : '');
                 /* translators: %1$s is replaced with the field label, %2$d with the target value */
                 $msglength = sprintf(__('%1$s must have at least %2$d characters', 'memberdata-forms'), $name, !($type == 'date' || $type == 'time') ? $val : 0);
                 break;
@@ -334,7 +334,7 @@ class FormSubmissionService
                 /* translators: %1$s is replaced with the field label, %2$f with the target value */
                 $msgnum = sprintf(__('%1$s must be greater than %2$f', 'memberdata-forms'), $name, $type == 'number' ? $val : 0);
                 /* translators: %1$s is replaced with the field label, %2$s with the target value */
-                $msgdate = sprintf(__('%1$s must be after %2$s', 'memberdata-forms'), $name, ($type == 'date' || $type == 'time') ? $val->format($options) : '');
+                $msgdate = sprintf(__('%1$s must be after %2$s', 'memberdata-forms'), $name, ($type == 'date' || $type == 'time') ? self::safeFormat($val, $options) : '');
                 /* translators: %1$s is replaced with the field label, %2$d with the target value */
                 $msglength = sprintf(__('%1$s must have more than %2$d characters', 'memberdata-forms'), $name, !($type == 'date' || $type == 'time') ? $val : 0);
                 break;
@@ -356,6 +356,14 @@ class FormSubmissionService
         }
     }
 
+    private static function safeFormat($val, $format)
+    {
+        if (is_object($val)) {
+            return $val->format($format);
+        }
+        return '';
+    }
+
     private static function compareValues(mixed $val, mixed $wrt, string $type): int
     {
         switch ($type) {
@@ -364,9 +372,12 @@ class FormSubmissionService
                 return $val > $wrt ? 1 : ($val < $wrt ? -1 : 0);
             case 'date':
             case 'time':
-                $v1 = intval('1' . $val->format('YmdHis'));
-                $v2 = intval('1' . $wrt->format('YmdHis'));
-                return $val > $wrt ? 1 : ($val < $wrt ? -1 : 0);
+                if (is_object($val) && is_object($wrt)) {
+                    $v1 = intval('1' . $val->format('YmdHis'));
+                    $v2 = intval('1' . $wrt->format('YmdHis'));
+                    return $val > $wrt ? 1 : ($val < $wrt ? -1 : 0);
+                }
+                return 0;
         }
         return 0;
     }
